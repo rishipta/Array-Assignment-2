@@ -1,0 +1,109 @@
+(a)  #include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    char str1[100], str2[100];
+    cout << "Enter first string: ";
+    cin.getline(str1, 100);
+    cout << "Enter second string: ";
+    cin.getline(str2, 100);
+
+    strcat(str1, str2); // Concatenate str2 into str1
+
+    cout << "Concatenated String: " << str1 << endl;
+    return 0;
+}
+(b) #include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    char str[100];
+    cout << "Enter a string: ";
+    cin.getline(str, 100);
+
+    int n = strlen(str);
+    for (int i = 0; i < n / 2; i++) {
+        swap(str[i], str[n - i - 1]);
+    }
+
+    cout << "Reversed String: " << str << endl;
+    return 0;
+}
+(c)   #include <iostream>
+#include <cctype>
+using namespace std;
+
+bool isVowel(char ch) {
+    ch = tolower(ch);
+    return (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u');
+}
+
+int main() {
+    char str[100], result[100];
+    cout << "Enter a string: ";
+    cin.getline(str, 100);
+
+    int j = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (!isVowel(str[i])) {
+            result[j++] = str[i];
+        }
+    }
+    result[j] = '\0';
+
+    cout << "String after removing vowels: " << result << endl;
+    return 0;
+}
+(d) 
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter number of strings: ";
+    cin >> n;
+    cin.ignore(); // to clear newline
+
+    char str[50][100]; // max 50 strings, each max 100 chars
+    cout << "Enter strings:\n";
+    for (int i = 0; i < n; i++) {
+        cin.getline(str[i], 100);
+    }
+
+    // Bubble sort
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (strcmp(str[j], str[j + 1]) > 0) {
+                char temp[100];
+                strcpy(temp, str[j]);
+                strcpy(str[j], str[j + 1]);
+                strcpy(str[j + 1], temp);
+            }
+        }
+    }
+
+    cout << "\nStrings in alphabetical order:\n";
+    for (int i = 0; i < n; i++) {
+        cout << str[i] << endl;
+    }
+
+    return 0;
+}
+(e) 
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+int main() {
+    char ch;
+    cout << "Enter a character in uppercase: ";
+    cin >> ch;
+
+    char lower = tolower(ch);
+    cout << "Lowercase character: " << lower << endl;
+
+    return 0;
+}
