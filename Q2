@@ -1,0 +1,30 @@
+Linear Time Approach
+#include <iostream>
+using namespace std;
+
+// Linear Time O(n)
+int findMissingLinear(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        if (arr[i] != i + 1) {
+            return i + 1;
+        }
+    }
+    return n; // if not found, the missing number is the last one
+}
+
+// Binary Search O(log n)
+int findMissingBinary(int arr[], int n) {
+    int left = 0, right = n - 2; // array has n-1 elements
+    while (left <= right) {
+        int mid = (left + right) / 2;
+
+        // If value matches its index+1, missing is on the right
+        if (arr[mid] == mid + 1) {
+            left = mid + 1;
+        } else {
+            // mismatch => missing number lies on the left
+            right = mid - 1;
+        }
+    }
+    return left + 1; // missing number
+}
