@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+bool isSubstring(const string& sub, const string& str) {
+    return str.find(sub) != string::npos;
+}
+
+bool canSplit(string s) {
+    int n = s.length();
+
+    // i and j split points
+    for (int i = 1; i < n - 1; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            string A = s.substr(0, i);
+            string B = s.substr(i, j - i);
+            string C = s.substr(j);
+
+            // Check if A is substring of both B and C
+            if (isSubstring(A, B) && isSubstring(A, C)) {
+                return true;
+            }
+
+            // Check if B is substring of both A and C
+            if (isSubstring(B, A) && isSubstring(B, C)) {
+                return true;
+            }
+
+            // Check if C is substring of both A and B
+            if (isSubstring(C, A) && isSubstring(C, B)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+int main() {
+    string s;
+
+    cout << "Enter the string: ";
+    cin >> s;
+
+    if (canSplit(s)) {
+        cout << "YES, it is possible to split the string." << endl;
+    } else {
+        cout << "NO, it is not possible to split the string." << endl;
+    }
+
+    return 0;
+}
